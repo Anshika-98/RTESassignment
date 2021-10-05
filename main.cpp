@@ -84,13 +84,19 @@ void part1a() {
 */
 void part1b() {
 	uint8_t* i;
-
-	for(i == (uint8_t*)3000; i >= 0; ++i) {
+uint8_t led2Var = 0;
+	for(i =(uint8_t*)3000; i >= NULL; ++i) {
 		
+    led2Var = ~led2Var;
+
+		led2.write(led2Var);
+
+		led2 = led2Var;
+
 		// toggle LED
 		led2 = ~led2;
 
-		wait_us(0.5);
+		wait_us(500);
 	}
 }
 
@@ -131,6 +137,7 @@ void part1c() {
 
 	// your task - print me in the format: 0x00001234
 	uint16_t hexLiteral = 0x1234;
+  printf("0x%08X\n", hexLiteral);
 
 }
 
@@ -147,13 +154,13 @@ void part2() {
 
 	//decode the string
 	for(i = 0; i < 16; i++){
-		decodedString[i] = secretString[15-i];
+		decodedString[i] = secretString[15-i]; // The decoded string is "WELCOME TO RTES!"
 	}
 
 	// erase the decoded string
 	for(i = 0; i < 16; i++){
 		decodedString[i] = 0x00;
-	}
+	} 
 }
 
 /*
@@ -174,5 +181,16 @@ uint8_t message[13] = {0x49,0x20,0x6C,0x6F,0x76,0xFF,0x20,0x70,0xEE,0x7A,0x7A,0x
 uint8_t decoded_message[13] = {0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
 
 void extension () {
+  uint8_t i;
+  uint8_t l;
+  for(i = 0; i < 13; i++){
+		decoded_message[i] = message[i]; 
+    // uint8_t message[13] = {0x49,0x20,0x6C,0x6F,0x76,0x65,0x20,0x70,0x69,0x7A,0x7A,0x61,0x2E};
+    // "I love pizza is the best guess for the message"
+	}
+    for(l = 0; l < 13; l++)
+    {
+      printf("%c, ",decoded_message[i]); // decoded message is " I love pizza"
+  }
 
 }
